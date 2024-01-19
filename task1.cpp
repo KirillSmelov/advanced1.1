@@ -1,6 +1,7 @@
 ﻿#include<iostream>
 #include<vector>
 #include<Windows.h>
+#include <algorithm>
 int main(int argc, char** argv)
 {
 	SetConsoleCP(1251);
@@ -12,16 +13,14 @@ int main(int argc, char** argv)
 		std::cout << number << ' ';
 	}
 	std::cout << std::endl;
-	std::cout << "Выходные данные: ";
-	for (auto number : v)
-	{
-		if (number % 2 != 0)
-		{
-			number *= 3;
-		}
-		std::cout << number << " ";
-	}
 
+	std::for_each(v.begin(), v.end(), [](int& v) {if (v % 2 != 0) { v *= 3; }});
+	std::cout << "Выходные данные: ";
+	
+	for (const auto& number : v)
+	{
+		std::cout << number << ' ';
+	}
 
 	return 0;
 }
